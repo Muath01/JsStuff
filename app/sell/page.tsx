@@ -2,6 +2,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -11,6 +12,8 @@ import React from "react";
 import SelectCategory from "../components/SelectCategory";
 import { Textarea } from "@/components/ui/textarea";
 import Tiptap from "../components/Editor";
+import { UploadDropzone } from "../lib/uploadthing";
+import { Button } from "@/components/ui/button";
 
 function SellRoute() {
   return (
@@ -43,6 +46,17 @@ function SellRoute() {
                 <Label>Description</Label>
                 <Tiptap />
               </div>
+              <div className="flex flex-col gap-y-2">
+                <Label>Product Images</Label>
+                <UploadDropzone endpoint="imageUploader" />
+              </div>
+              <div className="flex flex-col gap-y-2">
+                <Label>Product File</Label>
+                <UploadDropzone endpoint="productFileUpload" />
+              </div>
+              <CardFooter className="mt-5">
+                <Button>Submit form</Button>
+              </CardFooter>
             </CardContent>
           </CardHeader>
         </form>
