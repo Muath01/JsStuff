@@ -1,7 +1,7 @@
 import React from "react";
 import prisma from "../lib/db";
 import Link from "next/link";
-import ProductCard from "./ProductCart";
+import ProductCard from "./ProductCard";
 
 async function getData() {
   const data = await prisma.product.findMany({
