@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { delay } from "@/lib/utils";
 import { JSONContent } from "@tiptap/react";
 import Image from "next/image";
 import React from "react";
