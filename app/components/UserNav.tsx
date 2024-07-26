@@ -52,8 +52,8 @@ function UserNav({ email, name, userImage }: iAppProps) {
         </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer">Billing</DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer">Team</DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer">
-          Subscription
+        <DropdownMenuItem className="cursor-pointer" asChild>
+          <Link href="/settings">Settings</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator className="cursor-pointer" />
         <DropdownMenuItem className="cursor-pointer" asChild>
