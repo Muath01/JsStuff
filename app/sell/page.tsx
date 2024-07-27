@@ -1,8 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { redirect } from "next/navigation";
 import prisma from "../lib/db";
-import SellForm from "../components/form/SellForm";
+import { SettingsForm } from "../components/form/SettingsForm";
 import { unstable_noStore as noStore } from "next/cache";
 
 async function getData(userId: string) {
@@ -11,33 +10,32 @@ async function getData(userId: string) {
       id: userId,
     },
     select: {
-      stripeConnectedLinked: true,
+      firstName: true,
+      lastName: true,
+      email: true,
     },
   });
 
-  if (!data?.stripeConnectedLinked) {
-    redirect("/billing");
-  }
-
-  return null;
+  return data;
 }
-export default async function SellRoute() {
-  noStore();
 
+export default async function SetttingsPage() {
+  noStore();
   const { getUser } = getKindeServerSession();
   const user = await getUser();
-
   if (!user) {
-    throw new Error("Unauthorised ");
-    // redirect("/");
+    throw new Error("Not Authorized");
   }
 
   const data = await getData(user.id);
-
   return (
-    <section className="max-w-7xl mx-auto px-4 md:px-8 mb-14">
+    <section className="max-w-7xl mx-auto px-4 md:px-8">
       <Card>
-        <SellForm />
+        <SettingsForm
+          firstName={data?.firstName as string}
+          lastName={data?.lastName as string}
+          email={data?.email as string}
+        />
       </Card>
     </section>
   );
