@@ -52,7 +52,6 @@ async function CategoryPage({
 }) {
   const category = params.category;
   const data = await getData(category);
-  await delay(2000);
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8">

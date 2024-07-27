@@ -1,9 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 import prisma from "../lib/db";
 import { date } from "zod";
 import { notFound } from "next/navigation";
-import ProductCard from "./ProductCard";
+import ProductCard, { LoadingProductCard } from "./ProductCard";
 import Link from "next/link";
+import { delay } from "@/lib/utils";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface CategoryProps {
   category: "newest" | "templates" | "uikits" | "icons";
@@ -28,6 +30,7 @@ async function getData({ category }: CategoryProps) {
       return {
         data: data,
         title: "Icons",
+        link: "/products/icon",
       };
     }
     case "newest": {
@@ -48,6 +51,7 @@ async function getData({ category }: CategoryProps) {
       return {
         data: data,
         title: "Newest Products",
+        link: "/products/all",
       };
     }
     case "templates": {
@@ -68,6 +72,7 @@ async function getData({ category }: CategoryProps) {
       return {
         data: data,
         title: "Templates",
+        link: "/products/template",
       };
     }
     case "uikits": {
@@ -88,6 +93,7 @@ async function getData({ category }: CategoryProps) {
       return {
         data: data,
         title: "UiKits",
+        link: "/products/uikit",
       };
     }
     default: {
@@ -96,17 +102,27 @@ async function getData({ category }: CategoryProps) {
   }
 }
 export async function ProductRow({ category }: CategoryProps) {
+  return (
+    <section className="mt-12">
+      <Suspense fallback={<LoadingState />}>
+        <LoadRows category={category} />
+      </Suspense>
+    </section>
+  );
+}
+
+async function LoadRows({ category }: CategoryProps) {
   const data = await getData({ category: category });
 
   return (
-    <section className="mt-12">
+    <>
       <div className="md:flex md:items-center md:justify-between">
         <h2 className="text-2xl font-extrabold tracking-tighter">
           {data.title}
         </h2>
         <Link
           className="text-sm hidden font-medium text-primary hover:text-primary/70 md:block"
-          href="#"
+          href={data.link}
         >
           All Products <span>&rarr;</span>
         </Link>
@@ -124,8 +140,19 @@ export async function ProductRow({ category }: CategoryProps) {
           />
         ))}
       </div>
-    </section>
+    </>
   );
 }
 
-export default ProductRow;
+function LoadingState() {
+  return (
+    <div>
+      <Skeleton className="h-8 w-56" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 mt-4 gap-10 lg:grid-cols-3">
+        <LoadingProductCard />
+        <LoadingProductCard />
+        <LoadingProductCard />
+      </div>
+    </div>
+  );
+}

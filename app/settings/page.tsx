@@ -2,7 +2,8 @@ import { Card } from "@/components/ui/card";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import React from "react";
 import prisma from "../lib/db";
-import { SettingsForm } from "../components/SettingsForm";
+import { SettingsForm } from "../components/form/SettingsForm";
+import { delay } from "@/lib/utils";
 
 async function getData(userId: string) {
   const data = await prisma.user.findUnique({
