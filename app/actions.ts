@@ -68,12 +68,7 @@ export async function sellProduct(prevState: any, formData: FormData) {
     return state;
   }
 
-  const state: State = {
-    status: "success",
-    message: "Your Proudct has been created!",
-  };
-
-  await prisma.product.create({
+  const data = await prisma.product.create({
     data: {
       name: validateFields.data.name,
       category: validateFields.data.category as CategoryTypes,
@@ -86,7 +81,7 @@ export async function sellProduct(prevState: any, formData: FormData) {
     },
   });
 
-  return state;
+  return redirect(`/product/${data.id}`);
 }
 
 // updating settings
@@ -144,6 +139,11 @@ export async function BuyProduct(formData: FormData) {
       smallDescription: true,
       price: true,
       images: true,
+      User: {
+        select: {
+          connectedAccountId: true,
+        },
+      },
     },
   });
 
@@ -163,6 +163,13 @@ export async function BuyProduct(formData: FormData) {
         quantity: 1,
       },
     ],
+
+    payment_intent_data: {
+      application_fee_amount: Math.round((data?.price as number) * 100) * 0.1,
+      transfer_data: {
+        destination: data?.User?.connectedAccountId as string,
+      },
+    },
     success_url: "http://localhost:3000/payment/success",
     cancel_url: "http://localhost:3000/payment/cancel",
   });

@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { type JSONContent } from "@tiptap/react";
-import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { toast } from "sonner";
@@ -19,9 +18,7 @@ import { UploadDropzone } from "@/app/lib/uploadthing";
 import { Label } from "@/components/ui/label";
 import SelectCategory from "../SelectCategory";
 import Tiptap from "../Editor";
-import { Button } from "@/components/ui/button";
 import SubmitButton from "../SubmitButton";
-import prisma from "@/app/lib/db";
 import { State, sellProduct } from "../../actions";
 function SellForm() {
   const initalState: State = { message: "", status: undefined };
@@ -33,7 +30,6 @@ function SellForm() {
   useEffect(() => {
     if (state.status === "success") {
       toast.success(state.message);
-      redirect("/");
     } else if (state.status === "error") {
       toast.error(state.message);
     }
