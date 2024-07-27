@@ -51,9 +51,11 @@ function UserNav({ email, name, userImage }: iAppProps) {
           <Link href="/sell">Sell Your Product</Link>
         </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer" asChild>
-          <Link href="my-products">My Products</Link>
+          <Link href="/my-products">My Products</Link>
         </DropdownMenuItem>
-        <DropdownMenuItem className="cursor-pointer">Team</DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer" asChild>
+          <Link href="/billing">Billing</Link>
+        </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer" asChild>
           <Link href="/settings">Settings</Link>
         </DropdownMenuItem>
