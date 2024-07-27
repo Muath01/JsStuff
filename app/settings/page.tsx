@@ -5,6 +5,7 @@ import prisma from "../lib/db";
 import { SettingsForm } from "../components/form/SettingsForm";
 import { delay } from "@/lib/utils";
 import { unstable_noStore as noStore } from "next/cache";
+import { redirect } from "next/navigation";
 
 async function getData(userId: string) {
   const data = await prisma.user.findUnique({
@@ -28,7 +29,7 @@ async function SettingsPage() {
   const user = await getUser();
 
   if (!user) {
-    throw new Error("Not Authorized");
+    return redirect("/");
   }
 
   const data = await getData(user.id);
