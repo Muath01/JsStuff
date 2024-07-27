@@ -3,8 +3,11 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import prisma from "../lib/db";
 import SellForm from "../components/form/SellForm";
+import { unstable_noStore as noStore } from "next/cache";
 
 async function getData(userId: string) {
+  noStore();
+
   const data = await prisma.user.findUnique({
     where: {
       id: userId,

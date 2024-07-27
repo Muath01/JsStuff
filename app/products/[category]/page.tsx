@@ -4,6 +4,7 @@ import { delay } from "@/lib/utils";
 import { CategoryTypes } from "@prisma/client";
 import { notFound } from "next/navigation";
 import React from "react";
+import { unstable_noStore as noStore } from "next/cache";
 
 async function getData(category: CategoryTypes | "all") {
   let input: CategoryTypes | undefined;
@@ -50,6 +51,8 @@ async function CategoryPage({
 }: {
   params: { category: CategoryTypes };
 }) {
+  noStore();
+
   const category = params.category;
   const data = await getData(category);
 
