@@ -6,8 +6,6 @@ import SellForm from "../components/form/SellForm";
 import { unstable_noStore as noStore } from "next/cache";
 
 async function getData(userId: string) {
-  noStore();
-
   const data = await prisma.user.findUnique({
     where: {
       id: userId,
@@ -24,6 +22,8 @@ async function getData(userId: string) {
   return null;
 }
 export default async function SellRoute() {
+  noStore();
+
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 

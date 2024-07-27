@@ -4,6 +4,7 @@ import React from "react";
 import prisma from "../lib/db";
 import { SettingsForm } from "../components/form/SettingsForm";
 import { delay } from "@/lib/utils";
+import { unstable_noStore as noStore } from "next/cache";
 
 async function getData(userId: string) {
   const data = await prisma.user.findUnique({
@@ -21,6 +22,8 @@ async function getData(userId: string) {
 }
 
 async function SettingsPage() {
+  noStore();
+
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
