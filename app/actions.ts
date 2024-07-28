@@ -5,6 +5,7 @@ import prisma from "./lib/db";
 import { CategoryTypes } from "@prisma/client";
 import { stripe } from "@/lib/stripe";
 import { redirect } from "next/navigation";
+import { apiUrl } from "@/lib/path";
 
 export type State = {
   status: "error" | "success" | undefined;
@@ -170,8 +171,8 @@ export async function BuyProduct(formData: FormData) {
         destination: data?.User?.connectedAccountId as string,
       },
     },
-    success_url: "http://localhost:3000/payment/success",
-    cancel_url: "http://localhost:3000/payment/cancel",
+    success_url: apiUrl + "/payment/success",
+    cancel_url: apiUrl + "/payment/cancel",
   });
 
   return redirect(session.url as string);
@@ -199,8 +200,8 @@ export async function CreateStripeAccountLink() {
 
   const accountLink = await stripe.accountLinks.create({
     account: data?.connectedAccountId as string,
-    refresh_url: `http://localhost:3000/billing`,
-    return_url: `http://localhost:3000/return/${data?.connectedAccountId}`,
+    refresh_url: apiUrl + "/billing",
+    return_url: apiUrl + `/return/${data?.connectedAccountId}`,
     type: "account_onboarding",
   });
 

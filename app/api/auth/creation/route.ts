@@ -3,6 +3,7 @@ import { stripe } from "@/lib/stripe";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { NextResponse } from "next/server";
 import { unstable_noStore as noStore } from "next/cache";
+import { apiUrl } from "@/lib/path";
 
 export async function GET() {
   noStore();
@@ -47,5 +48,5 @@ export async function GET() {
     });
   }
 
-  return NextResponse.redirect("http://localhost:3000/");
+  return NextResponse.redirect(apiUrl);
 }
