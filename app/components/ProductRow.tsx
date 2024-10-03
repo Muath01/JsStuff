@@ -24,7 +24,7 @@ async function getData({ category }: CategoryProps) {
           smallDescription: true,
           id: true,
         },
-        take: 3,
+        take: 4,
       });
 
       return {
@@ -45,7 +45,7 @@ async function getData({ category }: CategoryProps) {
         orderBy: {
           createdAt: "desc",
         },
-        take: 3,
+        take: 4,
       });
 
       return {
@@ -66,7 +66,7 @@ async function getData({ category }: CategoryProps) {
           smallDescription: true,
           id: true,
         },
-        take: 3,
+        take: 4,
       });
 
       return {
@@ -87,7 +87,7 @@ async function getData({ category }: CategoryProps) {
           smallDescription: true,
           id: true,
         },
-        take: 3,
+        take: 4,
       });
 
       return {
@@ -148,7 +148,7 @@ function LoadingState() {
   return (
     <div>
       <Skeleton className="h-8 w-56" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 mt-4 gap-10 lg:grid-cols-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 mt-4 gap-10 lg:grid-cols-4">
         <LoadingProductCard />
         <LoadingProductCard />
         <LoadingProductCard />

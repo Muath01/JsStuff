@@ -25,6 +25,11 @@ export const navBarLinks = [
     name: "Icons",
     href: "/products/icon",
   },
+  // {
+  //   id: 4,
+  //   name: "DashBoard",
+  //   href: "/admin",
+  // },
 ];
 function NavBarLinks() {
   const location = usePathname();

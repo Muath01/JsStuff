@@ -18,6 +18,7 @@ model User {
   stripeConnectedLinked Boolean @default(false)
 
   Product Product[]
+  Order   Order[]
 }
 
 model Product {
@@ -33,6 +34,19 @@ model Product {
   createdAt DateTime @default(now())
   User      User?    @relation(fields: [userId], references: [id])
   userId    String?
+  Order     Order[]
+}
+
+model Order {
+  id               String   @id @default(uuid())
+  pricePaidInCents Int
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  userId    String
+  productId String
+  Product   Product @relation(fields: [productId], references: [id])
+  User      User    @relation(fields: [userId], references: [id])
 }
 
 enum CategoryTypes {

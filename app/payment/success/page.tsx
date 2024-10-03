@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Check } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 function SuccessRoute() {
+
+ 
   return (
     <section className="w-full min-h-[80vh] flex items-center justify-center">
       <Card className="w-[350px] ">

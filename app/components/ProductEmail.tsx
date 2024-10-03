@@ -10,6 +10,7 @@ import {
   Button,
   Container,
 } from "@react-email/components";
+
 function ProductEmail({ link }: { link: string }) {
   return (
     <Html>

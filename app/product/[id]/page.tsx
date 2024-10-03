@@ -15,7 +15,18 @@ import { JSONContent } from "@tiptap/react";
 import Image from "next/image";
 import React from "react";
 import { unstable_noStore as noStore } from "next/cache";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { MessageCircleMore } from "lucide-react";
 
+//get the product
 async function getData(productId: string) {
   const data = await prisma.product.findUnique({
     where: {
@@ -34,6 +45,7 @@ async function getData(productId: string) {
         select: {
           profileImage: true,
           firstName: true,
+          lastName: true,
         },
       },
     },
@@ -99,7 +111,21 @@ async function ProductPage({ params }: { params: { id: string } }) {
           </div>
         </div>
         <div className="border-t border-gray-200 mt-10"></div>
+        <Card className="mt-10 border-none shadow-none">
+          <CardHeader className="flex flex-row items-center gap-x-2">
+            <Avatar>
+              <AvatarImage src={data?.User?.profileImage} />
+              <AvatarFallback>{data?.User?.firstName}</AvatarFallback>
+            </Avatar>
+
+            <CardDescription className="text-lg text-black font-semibold flex flex-row gap-x-2">
+              {data?.User?.firstName} {data?.User?.lastName}
+              {/* <MessageCircleMore size={24} /> */}
+            </CardDescription>
+          </CardHeader>
+        </Card>
       </div>
+
       <div className="w-full max-w-2xl mx-auto mt-16 lg:max-w-none lg:mt-0 lg:col-span-4 mb-10">
         <ProductDescription content={data?.description as JSONContent} />
       </div>
