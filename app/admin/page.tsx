@@ -30,7 +30,13 @@ async function page() {
   const user = await getUser();
 
   if (!user) {
-    throw new Error("Unauthorised");
+    <section className="max-w-7xl mx-auto px-4 md:px-8 mb-24 pt-10">
+      <h1>Authentication Error</h1>
+      <p>
+        Unable to authenticate user. Please check your authentication setup and
+        try again.
+      </p>
+    </section>;
   }
 
   const productCount = await getProducts(user.id);
