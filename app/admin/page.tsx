@@ -29,17 +29,11 @@ async function page() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  if (!user) {
-    <section className="max-w-7xl mx-auto px-4 md:px-8 mb-24 pt-10">
-      <h1>Authentication Error</h1>
-      <p>
-        Unable to authenticate user. Please check your authentication setup and
-        try again.
-      </p>
-    </section>;
-  }
+  // if (!user) {
+  //   throw new Error("Unauthorised");
+  // }
 
-  const productCount = await getProducts(user.id);
+  const productCount = await getProducts(user?.id || "");
 
   return (
     <section className="max-w-7xl mx-auto px-4 md:px-8 mb-24 pt-10">
