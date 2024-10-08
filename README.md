@@ -120,5 +120,4 @@
 - **Analytics Dashboard**: Allow admins to view data on sales trends, popular products, and customer behavior insights.
 
 ## License
-
 This project is licensed under the MIT License.
