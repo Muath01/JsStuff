@@ -2,6 +2,10 @@
 
 **ReserverIt** is an E-Commerce platform designed for selling digital products, including logos, icons, and UI designs. Built using **Next.js**, **TypeScript**, **PostgreSQL**, **Prisma**, and **Resend**, it offers a streamlined process for digital purchases, secure transactions, and automatic product delivery, optimized for both users and administrators.
 
+![image](https://github.com/user-attachments/assets/5910f9b0-1468-4cfe-b00f-4f86047ce962)
+![image](https://github.com/user-attachments/assets/12093e4d-5ff5-4c1e-b142-e62fbe275581)
+
+
 ## Features
 
 - **Admin Dashboard**: Manage product listings with the ability to add, update, or remove products via a dedicated admin page powered by Next.js server actions.
