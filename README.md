@@ -1,7 +1,3 @@
-Got it! Here’s the README tailored to the `ReserverIt` e-commerce app for digital goods:
-
----
-
 # ReserverIt - E-Commerce App for Digital Goods
 
 **ReserverIt** is an E-Commerce platform designed for selling digital products, including logos, icons, and UI designs. Built using **Next.js**, **TypeScript**, **PostgreSQL**, **Prisma**, and **Resend**, it offers a streamlined process for digital purchases, secure transactions, and automatic product delivery, optimized for both users and administrators.
